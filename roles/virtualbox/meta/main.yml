@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: Christopher H. Laco
+  description: Install and configure VirtualBox
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+    - name: Darwin
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - zesty
+  categories:
+    - development
+    - system
+dependencies: []

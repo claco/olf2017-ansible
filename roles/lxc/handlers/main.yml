@@ -1,0 +1,6 @@
+---
+- name: Restart LXC Network
+  service:
+    name: lxc-net
+    state: restarted
+  become: yes

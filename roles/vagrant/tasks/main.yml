@@ -1,0 +1,15 @@
+---
+- name: Install Required Packages | Homebrew
+  package: name={{ item }} state=latest
+  with_items: '{{ vagrant_required_packages[ansible_distribution | lower] | default([]) }}'
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Required Packages | Packages
+  package: name={{ item }} state=latest
+  become: yes
+  with_items: '{{ vagrant_required_packages[ansible_distribution | lower] | default([]) }}'
+  when: ansible_distribution != 'MacOSX'
+
+- name: Install Vagrant | Homebrew Cask
+  homebrew_cask: name=vagrant state=present
+  when: ansible_distribution == 'MacOSX'

@@ -1,0 +1,18 @@
+---
+lxc_required_packages:
+  ubuntu:
+    - lxc
+    - python-lxc
+lxc_net_config_file: /etc/default/lxc-net
+lxc_bridge: lxcbr0
+lxc_addr: 192.168.2.1
+lxc_netmask: 255.255.255.0
+lxc_network: 192.168.2.0/24
+lxc_dhcp_range: 192.168.2.2,192.168.2.254
+lxc_dhcp_max: 253
+lxc_dhcp_confile: /etc/lxc/dnsmasq.conf
+lxc_containers:
+  - { name: clear,  ip: 192.168.2.2 }
+  - { name: black,  ip: 192.168.2.3 }
+  - { name: blue,   ip: 192.168.2.4 }
+  - { name: orange, ip: 192.168.2.5 }

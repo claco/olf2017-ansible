@@ -1,0 +1,5 @@
+facts
+*.retry
+*.log
+.vagrant
+*.box

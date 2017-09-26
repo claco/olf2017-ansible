@@ -1,0 +1,6 @@
+---
+- name: Install Prerequisites
+  hosts: localhost
+  tags: bootstrap
+  roles:
+    - { role: vagrant, tags: vagrant }

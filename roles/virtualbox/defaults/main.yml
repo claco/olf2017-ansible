@@ -1,0 +1,6 @@
+---
+virtualbox_required_packages:
+  ubuntu:
+    - virtualbox
+    - virtualbox-dkms
+    - virtualbox-ext-pack

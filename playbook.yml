@@ -1,0 +1,36 @@
+---
+- name: Install LXC
+  hosts: default
+  tags: lxc
+  roles:
+    - { role: lxc, tags: lxc }
+
+- name: Create LXC Container
+  hosts: default
+  tags: lxc-containers
+  vars_files:
+    - roles/lxc/defaults/main.yml
+  tasks:
+    - name: Create Containers
+      become: true
+      lxc_container:
+        name: '{{ item.name }}'
+        container_log: true
+        container_config:
+          - "lxc.start.auto = 1"
+        container_command: |
+          echo 'pi ALL=NOPASSWD:ALL' > /etc/sudoers.d/pi
+        template: ubuntu
+        template_options: --release xenial --user pi --password raspberry
+        state: started
+      with_items: '{{ lxc_containers }}'
+
+    - name: Add Hosts Entries for LXC Containers
+      become: true
+      tags: lxc-hosts-config
+      lineinfile:
+        dest: /etc/hosts
+        regexp: ' {{ item.name }}$'
+        line: '{{ item.ip }} {{ item.name }}'
+        state: present
+      with_items: '{{ lxc_containers }}'

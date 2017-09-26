@@ -1,0 +1,21 @@
+---
+- name: Install Required Packages | Packages
+  package: name={{ item }} state=latest
+  become: yes
+  with_items: '{{ lxc_required_packages[ansible_distribution | lower] | default([]) }}'
+
+- name: Configure LXC Network Bridge
+  template:
+    src: lxc-net.j2
+    dest: '{{ lxc_net_config_file }}'
+    mode: 0644
+  become: yes
+  notify: Restart LXC Network
+
+- name: Configure LXC Network DHCP
+  template:
+    src: dnsmasq.conf.j2
+    dest: '{{ lxc_dhcp_confile }}'
+    mode: 0644
+  become: yes
+  notify: Restart LXC Network
