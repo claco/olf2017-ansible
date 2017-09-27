@@ -43,7 +43,7 @@ if [[ "$DIST" == "Ubuntu" ]]; then
 
     sudo apt-add-repository -y ppa:ansible/ansible &> /dev/null
     sudo apt -y update &> /dev/null
-    sudo apt -y install ansible git &> /dev/null
+    sudo apt -y install ansible git sshpass &> /dev/null
 
     echo "done"
   else

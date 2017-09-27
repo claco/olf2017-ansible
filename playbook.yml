@@ -1,4 +1,17 @@
 ---
+- name: Install Ansible Helpers
+  hosts: default
+  tags: ansible
+  tasks:
+    - name: Install Packages
+      package:
+        name: '{{ item }}'
+        state: present
+      become: true
+      with_items:
+        - sshpass
+        - tree
+
 - name: Install LXC
   hosts: default
   tags: lxc
@@ -21,7 +34,7 @@
         container_command: |
           echo 'pi ALL=NOPASSWD:ALL' > /etc/sudoers.d/pi
         template: ubuntu
-        template_options: --release xenial --user pi --password raspberry
+        template_options: --release {{ item.release }} --user pi --password raspberry --packages=python
         state: started
       with_items: '{{ lxc_containers }}'
 

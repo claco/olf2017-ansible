@@ -12,16 +12,18 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "olf2017-ansible"
-  config.vm.box_url = "./olf2017-ansible.box"
+  config.vm.box = "ubuntu/xenial64"
 
-  #Change the host name
+  # Change the host name
   config.vm.hostname = "deployment"
+
+  # Don't inject the ssh key since we'll export this box for others
+  config.ssh.insert_key = false
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
-  config.vm.box_check_update = false
+  # config.vm.box_check_update = false
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,

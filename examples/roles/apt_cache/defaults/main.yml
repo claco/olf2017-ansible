@@ -1,0 +1,5 @@
+---
+# defaults file for roles/apt_cache
+apt_cache_host: "{{ ansible_default_ipv4.gateway }}"
+apt_cache_port: 3142
+

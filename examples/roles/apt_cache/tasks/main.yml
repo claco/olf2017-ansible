@@ -1,0 +1,6 @@
+---
+# tasks file for roles/apt_cache
+- name: Create Apt Cache Proxy Configuration
+  template: src=00proxy.j2 dest=/etc/apt/apt.conf.d/00proxy
+  become: True
+

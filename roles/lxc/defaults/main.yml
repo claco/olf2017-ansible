@@ -12,7 +12,7 @@ lxc_dhcp_range: 192.168.2.2,192.168.2.254
 lxc_dhcp_max: 253
 lxc_dhcp_confile: /etc/lxc/dnsmasq.conf
 lxc_containers:
-  - { name: clear,  ip: 192.168.2.2 }
-  - { name: black,  ip: 192.168.2.3 }
-  - { name: blue,   ip: 192.168.2.4 }
-  - { name: orange, ip: 192.168.2.5 }
+  - { name: clear,  ip: 192.168.2.2, release: xenial }
+  - { name: black,  ip: 192.168.2.3, release: xenial }
+  - { name: blue,   ip: 192.168.2.4, release: trusty }
+  - { name: orange, ip: 192.168.2.5, release: trusty }
